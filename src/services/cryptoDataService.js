@@ -2,13 +2,13 @@ const axios = require('axios');
 
 class CryptoDataService {
   constructor() {
-    this.baseURL = 'https://api.binance.com/api/v3';
+    this.baseURL = 'https://api.bybit.com/v5';
     this.coinmarketcapURL = 'https://pro-api.coinmarketcap.com/v1';
     this.cache = new Map();
     this.cacheTimeout = 60000; // 1 минута
   }
 
-  // Получение исторических данных с Binance
+  // Получение исторических данных с Bybit
   async getHistoricalData(symbol, interval = '1h', limit = 500) {
     const cacheKey = `historical_${symbol}_${interval}_${limit}`;
     
@@ -20,24 +20,25 @@ class CryptoDataService {
     }
 
     try {
-      const response = await axios.get(`${this.baseURL}/klines`, {
+      const response = await axios.get(`${this.baseURL}/market/kline`, {
         params: {
+          category: 'spot',
           symbol: symbol,
           interval: interval,
           limit: limit
         }
       });
 
-      const data = response.data.map(kline => ({
-        timestamp: kline[0],
+      const data = response.data.result.list.map(kline => ({
+        timestamp: parseInt(kline[0]),
         open: parseFloat(kline[1]),
         high: parseFloat(kline[2]),
         low: parseFloat(kline[3]),
         close: parseFloat(kline[4]),
         volume: parseFloat(kline[5]),
-        closeTime: kline[6],
+        closeTime: parseInt(kline[6]),
         quoteVolume: parseFloat(kline[7]),
-        trades: kline[8],
+        trades: parseInt(kline[8]),
         takerBuyBaseVolume: parseFloat(kline[9]),
         takerBuyQuoteVolume: parseFloat(kline[10])
       }));
@@ -57,8 +58,12 @@ class CryptoDataService {
   // Получение текущих цен
   async getCurrentPrices(symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT']) {
     try {
-      const response = await axios.get(`${this.baseURL}/ticker/price`);
-      const allPrices = response.data;
+      const response = await axios.get(`${this.baseURL}/market/tickers`, {
+        params: {
+          category: 'spot'
+        }
+      });
+      const allPrices = response.data.result.list;
       
       return allPrices.filter(price => symbols.includes(price.symbol));
     } catch (error) {
@@ -70,8 +75,12 @@ class CryptoDataService {
   // Получение информации о криптовалютах
   async getCryptoInfo(symbols = ['BTC', 'ETH', 'ADA', 'DOT']) {
     try {
-      const response = await axios.get(`${this.baseURL}/exchangeInfo`);
-      const symbolsInfo = response.data.symbols;
+      const response = await axios.get(`${this.baseURL}/market/instruments-info`, {
+        params: {
+          category: 'spot'
+        }
+      });
+      const symbolsInfo = response.data.result.list;
       
       return symbolsInfo.filter(info => 
         symbols.some(symbol => info.symbol.includes(symbol))
@@ -85,8 +94,12 @@ class CryptoDataService {
   // Получение 24-часовой статистики
   async get24hStats(symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT']) {
     try {
-      const response = await axios.get(`${this.baseURL}/ticker/24hr`);
-      const allStats = response.data;
+      const response = await axios.get(`${this.baseURL}/market/tickers`, {
+        params: {
+          category: 'spot'
+        }
+      });
+      const allStats = response.data.result.list;
       
       return allStats.filter(stat => symbols.includes(stat.symbol));
     } catch (error) {
