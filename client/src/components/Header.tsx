@@ -7,7 +7,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   const tabs = [
-    { id: 'dashboard', label: 'Дашборд', icon: '📊' },
+    { id: 'dashboard', label: 'Трейдинг', icon: '📊' },
     { id: 'prediction', label: 'Прогнозы', icon: '🔮' },
     { id: 'analysis', label: 'Анализ', icon: '📈' }
   ];
@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     <header className="header">
       <div className="header-content">
         <div className="logo">
-          🚀 CryptoPredict
+          🚀 BTC & ETH Trader
         </div>
         <nav className="nav-tabs">
           {tabs.map(tab => (

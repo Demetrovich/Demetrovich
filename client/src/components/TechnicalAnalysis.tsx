@@ -39,7 +39,7 @@ const TechnicalAnalysis: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const symbols = ['BTC', 'ETH', 'ADA', 'DOT', 'LINK', 'UNI', 'AAVE', 'SOL'];
+  const symbols = ['BTC', 'ETH'];
 
   const fetchAnalysis = async (symbol: string) => {
     try {
@@ -112,7 +112,7 @@ const TechnicalAnalysis: React.FC = () => {
     <div className="technical-analysis">
       <div className="card">
         <div className="card-header">
-          <h1 className="card-title">📈 Технический анализ</h1>
+          <h1 className="card-title">📈 Технический анализ BTC & ETH</h1>
           <div className="flex gap-2">
             <select
               value={selectedSymbol}

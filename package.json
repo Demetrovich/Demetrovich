@@ -1,7 +1,7 @@
 {
   "name": "crypto-prediction-app",
   "version": "1.0.0",
-  "description": "Приложение для прогнозирования криптовалют на основе технического анализа",
+  "description": "Приложение для трейдинга Bitcoin и Ethereum с прогнозированием на основе технического анализа",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

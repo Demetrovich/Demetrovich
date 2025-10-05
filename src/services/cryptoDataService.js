@@ -56,7 +56,7 @@ class CryptoDataService {
   }
 
   // Получение текущих цен
-  async getCurrentPrices(symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT']) {
+  async getCurrentPrices(symbols = ['BTCUSDT', 'ETHUSDT']) {
     try {
       const response = await axios.get(`${this.baseURL}/market/tickers`, {
         params: {
@@ -73,7 +73,7 @@ class CryptoDataService {
   }
 
   // Получение информации о криптовалютах
-  async getCryptoInfo(symbols = ['BTC', 'ETH', 'ADA', 'DOT']) {
+  async getCryptoInfo(symbols = ['BTC', 'ETH']) {
     try {
       const response = await axios.get(`${this.baseURL}/market/instruments-info`, {
         params: {
@@ -92,7 +92,7 @@ class CryptoDataService {
   }
 
   // Получение 24-часовой статистики
-  async get24hStats(symbols = ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT']) {
+  async get24hStats(symbols = ['BTCUSDT', 'ETHUSDT']) {
     try {
       const response = await axios.get(`${this.baseURL}/market/tickers`, {
         params: {
