@@ -44,13 +44,13 @@ const Dashboard: React.FC = () => {
     <div className="dashboard">
       <div className="card">
         <div className="card-header">
-          <h1 className="card-title">📊 Дашборд криптовалют</h1>
+          <h1 className="card-title">📊 Трейдинг BTC & ETH</h1>
           <div className="status-indicator success">
             <span>🟢</span>
             <span>Активно</span>
           </div>
         </div>
-        <p>Мониторинг цен и прогнозов в реальном времени</p>
+        <p>Мониторинг цен и прогнозов Bitcoin и Ethereum в реальном времени</p>
       </div>
 
       <div className="grid grid-2">
@@ -85,7 +85,7 @@ const Dashboard: React.FC = () => {
         <div className="grid grid-4">
           <div className="text-center">
             <div className="text-2xl font-bold text-blue-400">{cryptoData.length}</div>
-            <div className="text-sm text-gray-400">Криптовалют</div>
+            <div className="text-sm text-gray-400">Торговых пар</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-400">{predictions.length}</div>

@@ -92,7 +92,7 @@ router.get('/predict/:symbol', async (req, res) => {
 // Массовое прогнозирование для нескольких криптовалют
 router.get('/predict/batch', async (req, res) => {
   try {
-    const { symbols = 'BTC,ETH,ADA,DOT', interval = '1h' } = req.query;
+    const { symbols = 'BTC,ETH', interval = '1h' } = req.query;
     const symbolList = symbols.split(',');
     
     const predictions = [];

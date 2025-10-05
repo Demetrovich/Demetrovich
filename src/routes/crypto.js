@@ -33,7 +33,7 @@ router.get('/historical/:symbol', async (req, res) => {
 router.get('/prices', async (req, res) => {
   try {
     const { symbols } = req.query;
-    const symbolList = symbols ? symbols.split(',') : ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT'];
+    const symbolList = symbols ? symbols.split(',') : ['BTCUSDT', 'ETHUSDT'];
     
     const prices = await cryptoDataService.getCurrentPrices(symbolList);
     
@@ -54,7 +54,7 @@ router.get('/prices', async (req, res) => {
 router.get('/stats/24h', async (req, res) => {
   try {
     const { symbols } = req.query;
-    const symbolList = symbols ? symbols.split(',') : ['BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'DOTUSDT'];
+    const symbolList = symbols ? symbols.split(',') : ['BTCUSDT', 'ETHUSDT'];
     
     const stats = await cryptoDataService.get24hStats(symbolList);
     
@@ -75,7 +75,7 @@ router.get('/stats/24h', async (req, res) => {
 router.get('/info', async (req, res) => {
   try {
     const { symbols } = req.query;
-    const symbolList = symbols ? symbols.split(',') : ['BTC', 'ETH', 'ADA', 'DOT'];
+    const symbolList = symbols ? symbols.split(',') : ['BTC', 'ETH'];
     
     const info = await cryptoDataService.getCryptoInfo(symbolList);
     

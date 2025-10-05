@@ -7,7 +7,7 @@ const PredictionPanel: React.FC = () => {
   const [selectedSymbol, setSelectedSymbol] = useState('BTC');
   const [trainingStatus, setTrainingStatus] = useState<{ [key: string]: 'idle' | 'training' | 'success' | 'error' }>({});
 
-  const symbols = ['BTC', 'ETH', 'ADA', 'DOT', 'LINK', 'UNI', 'AAVE', 'SOL'];
+  const symbols = ['BTC', 'ETH'];
 
   const handleTrainModel = async (symbol: string) => {
     setTrainingStatus(prev => ({ ...prev, [symbol]: 'training' }));
@@ -37,7 +37,7 @@ const PredictionPanel: React.FC = () => {
     <div className="prediction-panel">
       <div className="card">
         <div className="card-header">
-          <h1 className="card-title">🔮 Панель прогнозов</h1>
+          <h1 className="card-title">🔮 Прогнозы BTC & ETH</h1>
           <button 
             className="btn btn-primary"
             onClick={handleRefreshPredictions}
@@ -46,7 +46,7 @@ const PredictionPanel: React.FC = () => {
             {loading ? 'Обновление...' : 'Обновить'}
           </button>
         </div>
-        <p>Обучение моделей и получение прогнозов для криптовалют</p>
+        <p>Обучение моделей и получение прогнозов для Bitcoin и Ethereum</p>
       </div>
 
       <div className="grid grid-2">
